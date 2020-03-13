@@ -1,0 +1,97 @@
+En cada uno de estos archivos iran las url de mi servidor
+BACKEND
+1. Instalar los modulos a ocupar
+2. Configurar el servidor[
+    2.1 Configurar settings, el puerto donde corerrá la app
+    2.2 Configurar las path de las plantillas .hbs
+    2.3 Setear el motor de plantillas
+]
+3. Middlewares[
+    3.1 usar express.UrlEncoded
+    3.2 usar method Override
+    3.3 Configurar el modulo de sesion
+]
+
+4.Variables Globales
+
+5.Rutas(routes)[
+    Configurar en el servidor donde están las rutas y asegurarme
+    que los archivos no estén vacíos
+]
+
+6.Static Files[
+    Configurar express Static para los archivos estaticos como
+    css, aquí le hago saber al servidor donde está mi carpeta public
+    que contiene mis estilos con join(__dirname,'carpeta estatica')
+]
+
+7. Server Listening[
+    Configurar que el servidor esté escuchando al puerto elegido
+    para correr la aplicación, app.get
+]
+
+
+FRONTEND
+1.Crear los JS de las vistas a ocupar
+2.Crear los hbs que ocuparán las vistas
+3.Crear un main .hbs que ocuparán todas las vistas como plantilla
+4.agregar estilo, librería o framewor para las vistas
+
+CRUD
+Aquí cramos las rutas relacionadas con las notas, estas son las
+que nos van a permitir obtener un formulario, porder agregar una nota
+y enviar otra peticion al servidor, borrar, editarlas.
+
+En el archivo notes está el enrutador para esto.
+
+1. Creamos una carpeta para las notas en la carpeta vistas
+ 1.1 creamos la vista hbs de las notas[
+     colocamos un formulario dentro, en el acction del formulario
+     debemos poner la ruta a donde se enviaran los datos en el documento
+     note.js (/notes/new-note) y le colocamos el metodo con el que enviará
+     los datos que será POST.
+ ]
+ 1.2 creamos la ruta donde se recibiran los datos que enviará
+     el formulario de la nota nueva, la ruta nueva la creamos en
+     el js notes.js  (router.post('notes/new-note')).
+
+1.3 Una vez hemos logrado capturar la información enviada desde el formulario
+    hacia el backend en el metodo router.post la mostramos en un console log(req.body)
+    para corroborar que hemos capturado la data.
+
+2.Guardamos la información capturada en la base de datos.
+    2.1[Si observas tienes un objeto de JS ya que tiene llaves y también
+    tiene propiedades dentro, cada dato que el usuario manda es una 
+    propiedad, ya que usamos JS tenemos la facultad de ocupar una carácterista
+    que se llama destruturing("Sacar cada propiedad por separado en una 
+    constante o variable a partir de un objeto").
+
+    Si tenemos req.body debemos decirle que de ese objeto 
+    solo queremos obtener el titulo.
+    las guardamos en una constante:
+    const {title,description} = req.body;
+    ya al obtenerlo podemos guardarlo.
+    ]
+    2.2 Validar los datos:[
+        creamos un array de una const err= []; en donde vamos
+        a colocar los mensajes de errores en caso existan
+        y validamos los campos.
+
+        Si (no hay titulo){
+            insertamos en el [] un mensaje de error en un objeto
+            para enviarle un mensaje al usuario que introdujo mal 
+            los datos.
+        }
+        Hacemos lo mismo si no envia una descripción
+
+        2.3 Si los errores son mayores a 0 renderizamos de nuevo
+        el formulario para crear una nueva nota, pero esta vez le pasaremos
+        los errores que se cometieron atravez de un objeto.
+        En caso de que ingresó todo bien mandaremos un mensaje de OK
+    ]
+
+    Me quede en hora del video: 2:51:00
+
+    vamos a los perfiles de ususario
+
+    
